@@ -107,15 +107,15 @@ def gen_item (mail):
     return PyRSS2Gen.RSSItem(
         title = title(mail),
         link = find_url(content(mail)),
-        description = content_clean(mail),
+        description = content_clean(mail).replace("\n", "<br/>"),
         guid = PyRSS2Gen.Guid(find_url(content(mail))),
-        pubDate = datetime.datetime.fromtimestamp(timestamp(mail)))
+        pubDate = datetime.datetime.utcfromtimestamp(timestamp(mail)))
 
 rss = PyRSS2Gen.RSS2(
     title = "Albins rekommenderatflöde",
     link = "http://eval.nu/rekommenderat.rss",
     description = "Ett flöde med rekommenderad läsning",
-    lastBuildDate = datetime.datetime.now(),
+    lastBuildDate = datetime.datetime.utcnow(),
     items = map(gen_item, mails))
 
-rss.write_xml(sys.stdout)
+rss.write_xml(sys.stdout, encoding = "utf-8")
