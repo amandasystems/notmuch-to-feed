@@ -13,7 +13,3 @@ Python libraries used
 * python-json
 * PyRSS2Gen
 
-TODO
-====
-* Parse HTML multipart and use that in stead of the plain text
-version.

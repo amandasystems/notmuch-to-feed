@@ -14,6 +14,7 @@ import PyRSS2Gen
 import sys
 import time
 
+
 def strip_mail_crap(mail):
     "skip some uninteresting data"
     return mail[0][0]
@@ -91,6 +92,25 @@ def find_url(s):
     t = t[:t.find(">")]
     return t
 
+def notmuch_id(mail):
+    """return the notmuch internal ID for a given mail"""
+    return strip_mail_crap(mail)['id']
+
+def html(mail):
+    """return the HTML multipart of a given mail (or the plain text
+    version if it fails)"""
+    # notmuch part --part=2 id:"Tusenpekpinnar-6477@nyx"
+    def find_html_part(mail):
+        for part in body(mail):
+            if part['content-type'] == "text/html":
+                return part['id']
+        return 1 # we didn't find any text/html, using plain text.
+    return cm.getstatusoutput("notmuch part --part=" +
+                              str(find_html_part(mail)) + " id:" +
+                              notmuch_id(mail))[1]
+def strip_feed2imap_table(html):
+    return html #FIXME
+
 end_time=time.time() # now
 start_time=time.time() - (7 * 24 * 60 * 60) # 1 w earlier
 # this will output all mails matching tag "rek" recieved the last week:
@@ -107,9 +127,12 @@ def gen_item (mail):
     return PyRSS2Gen.RSSItem(
         title = title(mail),
         link = find_url(content(mail)),
-        description = content_clean(mail).replace("\n", "<br/>"),
+        description = strip_feed2imap_table(html(mail)),
         guid = PyRSS2Gen.Guid(find_url(content(mail))),
         pubDate = datetime.datetime.utcfromtimestamp(timestamp(mail)))
+
+#print map(html, mails)
+
 
 rss = PyRSS2Gen.RSS2(
     title = "Albins rekommenderatflöde",
