@@ -1,8 +1,9 @@
 #!/usr/bin/python2.6
 # -*- coding: utf-8 -*-
 #
-# Written by Albin Stjerna. Not licenced at all. Use any way you like,
-# don't complain if it breaks. Or do, and suggest improvements.
+# Written by Albin Stjerna and placed in the Public Domain. Use any
+# way you like, don't complain if it breaks. Or do, and suggest
+# improvements.
 #
 # Will (at present state) produce an RSS feed with the last weeks's
 # mail tagged with "rek" in notmuch.
