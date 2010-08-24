@@ -24,56 +24,56 @@ def body(mail):
     "return the body of the mail"
     return strip_mail_crap(mail)['body']
 
-def content_clean(mail):
-    "Trim and strip away feed2imap footer and notmuch URL index. Hopefully, don't touch other emails."
-    def find_start(str):
-        inurl=False
-        foundurl=False
-        start = 0
-        for a in s:
-            if a == '<' and not inurl and not foundurl:
-                inurl=True
-                start += 1
-            elif a == '>':
-                inurl=False
-                foundurl=True
-                start += 1
-            elif a == '\n':
-                if inurl: # URLs do not span multiple lines!
-                    error("parse error")
-                    break
-                elif foundurl: 
-                    return start + 1 # We've found our URL and now a \n -- we're home.
-            else: 
-                start += 1
-        return start
+# def content_clean(mail):
+#     "Trim and strip away feed2imap footer and notmuch URL index. Hopefully, don't touch other emails."
+#     def find_start(str):
+#         inurl=False
+#         foundurl=False
+#         start = 0
+#         for a in s:
+#             if a == '<' and not inurl and not foundurl:
+#                 inurl=True
+#                 start += 1
+#             elif a == '>':
+#                 inurl=False
+#                 foundurl=True
+#                 start += 1
+#             elif a == '\n':
+#                 if inurl: # URLs do not span multiple lines!
+#                     error("parse error")
+#                     break
+#                 elif foundurl: 
+#                     return start + 1 # We've found our URL and now a \n -- we're home.
+#             else: 
+#                 start += 1
+#         return start
 
-    def find_end(str):
-        hyphens_found=0 # we want to find two in a row and then a newline
-        end=0
-        for a in str:
-            if a == '\n' and hyphens_found==2:
-                return end # skip both hyphens and newlines
-            if a == ' ' and hyphens_found==2: #jump trailing ' '
-                end += 1
-            elif a == '-':
-                hyphens_found += 1
-            else:
-                hyphens_found = 0
-                end += 1
-        print end
-        return end
+#     def find_end(str):
+#         hyphens_found=0 # we want to find two in a row and then a newline
+#         end=0
+#         for a in str:
+#             if a == '\n' and hyphens_found==2:
+#                 return end # skip both hyphens and newlines
+#             if a == ' ' and hyphens_found==2: #jump trailing ' '
+#                 end += 1
+#             elif a == '-':
+#                 hyphens_found += 1
+#             else:
+#                 hyphens_found = 0
+#                 end += 1
+#         print end
+#         return end
 
-    def strip_url_index(s):
-        return s[:s.find("] \nhttp://")-2] #
+#     def strip_url_index(s):
+#         return s[:s.find("] \nhttp://")-2] #
 
-    s = content(mail)
-    begin = find_start(mail)
-    end = find_end(s)
-    if end == 0:
-        end = len(s)
+#     s = content(mail)
+#     begin = find_start(mail)
+#     end = find_end(s)
+#     if end == 0:
+#         end = len(s)
     
-    return strip_url_index(s[begin:end]).lstrip().rstrip()
+#     return strip_url_index(s[begin:end]).lstrip().rstrip()
 
 def content(mail):
     "return raw, unformatted mail content"
