@@ -13,3 +13,8 @@ Python libraries used
 * python-json
 * PyRSS2Gen
 
+Known limitations
+=================
+* The HTML mime-part will be included as-is, without any cleaning-up
+* Uses the notmuch binary -- perhaps one should interface cnotmuch in stead
+* Images are not shown at all
