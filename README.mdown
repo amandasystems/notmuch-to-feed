@@ -29,4 +29,4 @@ Known limitations
 =================
 * The HTML mime-part will be included as-is, without any cleaning-up
 * Uses the notmuch binary -- perhaps one should interface cnotmuch in stead
-* Images are not shown at all
+* Images are not shown when using the feed2imap image attachment method
