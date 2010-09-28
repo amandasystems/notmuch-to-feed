@@ -1,5 +1,4 @@
-This is (for now) a rather simple hack to make an RSS feed from this
-week's mail tagged with »rek« in
+This is (for now) a rather simple hack to make an RSS feed from mail with a certain tag using 
 [notmuch](http://notmuchmail.org/). It's somewhat
 [feed2imap](http://home.gna.org/feed2imap/)-centered, since that's
 what I use, and many cleanup hacks for the incoming mail is based on
@@ -7,6 +6,19 @@ what feed2imap yields.
 
 Also, I'm not really a python wizard, so improvement suggestions are
 much welcome and needed.
+
+To use
+=====================
+put something like this in ~/.notmuch-to-feedrc
+
+    [entries]
+    tag=rek
+    number=10
+    
+    [feed]
+    title=My blog
+    link=http://example.org/blog/
+    description=This is my recommended stuff!
 
 Python libraries used
 =====================
