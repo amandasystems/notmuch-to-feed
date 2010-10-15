@@ -27,7 +27,10 @@ def body(mail):
 
 def content(mail):
     "return raw, unformatted mail content"
-    return body(mail)[0]['content']
+#    print mail
+#    return
+    return notmuch_get_mime_part("1", notmuch_id(mail))
+    #return body(mail)[0]['content']
 
 def timestamp(mail):
     "return the UNIX timestamp of mail"
@@ -62,6 +65,10 @@ def html(mail):
 
 def strip_feed2imap_table(html):
     return html #FIXME
+
+def notmuch_get_mime_part(mime_id, message_id):
+    return cm.getstatusoutput('notmuch part --part=' + mime_id + 'id:' + message_id)[1]
+
 
 config = ConfigParser.ConfigParser()
 conf_file = os.path.expanduser('~/.notmuch-to-feedrc')
