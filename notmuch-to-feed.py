@@ -16,7 +16,6 @@ import time
 import ConfigParser
 import notmuch
 from email.parser import Parser
-from email.mime.text import MIMEText
 
 def find_url(s):
     "find a feed2imap-style formatted URL (<URL>) in an arbitrary string"
