@@ -87,6 +87,7 @@ if os.path.exists(conf_file):
 
 db = notmuch.Database()
 mails = notmuch.Query(db, 'tag:' + config.get("entries", "tag")).search_messages()
+
 maillist = []
 
 for m in mails:
