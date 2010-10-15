@@ -4,6 +4,8 @@ This is (for now) a rather simple hack to make an RSS feed from mail with a cert
 what I use, and many cleanup hacks for the incoming mail is based on
 what feed2imap yields.
 
+The newer versions are in stead targeting the sluk feed reader.
+
 Also, I'm not really a python wizard, so improvement suggestions are
 much welcome and needed.
 
@@ -31,4 +33,4 @@ Known limitations
 * The HTML mime-part will be included as-is, without any cleaning-up
 * Uses the notmuch binary -- perhaps one should interface cnotmuch in stead
 * Images are not shown when using the feed2imap image attachment method (with sluk they are)
-* When using the sluk feed reader, the generated feed will be invalid
+* When using the sluk feed reader, the generated feed may be invalid (this is a work in progress)
