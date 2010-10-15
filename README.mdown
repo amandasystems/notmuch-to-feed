@@ -4,7 +4,7 @@ This is (for now) a rather simple hack to make an RSS feed from mail with a cert
 what I use, and many cleanup hacks for the incoming mail is based on
 what feed2imap yields.
 
-The newer versions are instead targeting the sluk feed reader.
+The newer versions are instead targeting [the sluk feed reader](http://github.com/krl/sluk).
 
 Also, I'm not really a python wizard, so improvement suggestions are
 much welcome and needed.
