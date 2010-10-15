@@ -24,9 +24,11 @@ Python libraries used
 =====================
 * python-json
 * PyRSS2Gen
+* notmuch python bindings
 
 Known limitations
 =================
 * The HTML mime-part will be included as-is, without any cleaning-up
 * Uses the notmuch binary -- perhaps one should interface cnotmuch in stead
-* Images are not shown when using the feed2imap image attachment method
+* Images are not shown when using the feed2imap image attachment method (with sluk they are)
+* When using the sluk feed reader, the generated feed will be invalid
