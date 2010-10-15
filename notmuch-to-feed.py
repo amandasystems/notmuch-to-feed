@@ -8,9 +8,7 @@
 # Will (at present state) produce an RSS feed with the last weeks's
 # mail tagged with "rek" in notmuch.
 
-import commands as cm
 import os
-import json
 import datetime
 import PyRSS2Gen
 import sys
