@@ -21,7 +21,7 @@ from email.mime.text import MIMEText
 def find_url(s):
     "find a feed2imap-style formatted URL (<URL>) in an arbitrary string"
     t = s[s.find("http://"):]
-    t = t[:t.find(">")]
+    t = t[:t.find("\"")]
     return t
 
 
