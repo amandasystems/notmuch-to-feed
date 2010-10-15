@@ -8,22 +8,16 @@
 # Will (at present state) produce an RSS feed with the last weeks's
 # mail tagged with "rek" in notmuch.
 
-import os
-import datetime
+import os, sys, re, datetime
 import PyRSS2Gen
-import sys
-import time
 import ConfigParser
 import notmuch
 from email.parser import Parser
-from email.mime.text import MIMEText
 
 def find_url(s):
     "find a feed2imap-style formatted URL (<URL>) in an arbitrary string"
-    t = s[s.find("http://"):]
-    t = t[:t.find("\"")]
-    return t
-
+    match = re.search('https?://[^"]*', s)
+    return match.group(0)
 
 def find_url_in_mail(mail):
     "try finding an URL in a sluk header, fall back to using regular expressions"
